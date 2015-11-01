@@ -27,7 +27,7 @@
 
     NSRange glyphRange = [layoutManager glyphRangeForTextContainer: textContainer];
     [self lockFocus];
-    [layoutManager drawGlyphsForGlyphRange: glyphRange atPoint: NSMakePoint(0, 0)];
+    [layoutManager drawGlyphsForGlyphRange: glyphRange atPoint: NSMakePoint(5, 15)];
     [self unlockFocus];
 
     [textStorage release];
