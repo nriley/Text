@@ -33,6 +33,6 @@ int SIZE = 11;
     [[[self window] contentView] setNeedsDisplay: YES];
 }
 
-@synthesize atsuiUseDeviceMetrics, coreTextUseFixedAdvanceAttribute;
+@synthesize atsuiUseDeviceMetrics, coreTextUseFixedAdvanceAttribute, nsLayoutManagerUsesScreenFonts;
 
 @end

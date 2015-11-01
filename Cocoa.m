@@ -14,13 +14,23 @@
 
 - (void)drawRect:(NSRect)rect {
     NSDrawWhiteBezel([self bounds], rect);
-    
-    NSAttributedString *s = [[NSAttributedString alloc] initWithString: @"sample" attributes:
-			     [NSDictionary dictionaryWithObject: [NSFont fontWithName: [NSString stringWithUTF8String: PSFONT]
-										 size: SIZE]
-							 forKey: NSFontAttributeName]];
-    [s drawAtPoint: NSMakePoint(10, 20)];
-    [s release];
+
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject: [NSFont fontWithName: [NSString stringWithUTF8String: PSFONT] size: SIZE] forKey: NSFontAttributeName];
+    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithString: @"sample" attributes: attributes];
+    NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+    NSTextContainer *textContainer = [[NSTextContainer alloc] init];
+    [layoutManager setUsesScreenFonts: ((Controller *)[[self window] delegate]).nsLayoutManagerUsesScreenFonts];
+    [layoutManager addTextContainer: textContainer];
+    [textContainer release];
+    [textStorage addLayoutManager: layoutManager];
+    [layoutManager release];
+
+    NSRange glyphRange = [layoutManager glyphRangeForTextContainer: textContainer];
+    [self lockFocus];
+    [layoutManager drawGlyphsForGlyphRange: glyphRange atPoint: NSMakePoint(0, 0)];
+    [self unlockFocus];
+
+    [textStorage release];
 }
 
 @end

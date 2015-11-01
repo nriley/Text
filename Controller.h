@@ -14,10 +14,10 @@ extern const char *PSFONT;
 extern int SIZE;
 
 @interface Controller : NSWindowController {
-    BOOL atsuiUseDeviceMetrics, coreTextUseFixedAdvanceAttribute;
+    BOOL atsuiUseDeviceMetrics, coreTextUseFixedAdvanceAttribute, nsLayoutManagerUsesScreenFonts;
 }
 
-@property BOOL atsuiUseDeviceMetrics, coreTextUseFixedAdvanceAttribute;
+@property BOOL atsuiUseDeviceMetrics, coreTextUseFixedAdvanceAttribute, nsLayoutManagerUsesScreenFonts;
 
 - (IBAction)fontChanged:(id)sender;
 - (IBAction)refresh:(id)sender;
