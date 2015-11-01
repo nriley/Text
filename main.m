@@ -7,17 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <CoreText/CoreText.h>
 
 int main(int argc, char *argv[])
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    for (NSString *f in [[NSBundle mainBundle] pathsForResourcesOfType: @"ttf" inDirectory: nil]) {
-	FSRef fsr;
-	ATSFontContainerRef fontContainer;
-	NSLog(@"activating %@", f);
-	assert(CFURLGetFSRef((CFURLRef)[NSURL fileURLWithPath: f], &fsr));
-	verify_noerr(ATSFontActivateFromFileReference(&fsr, kATSFontContextLocal, kATSFontFormatUnspecified, NULL, kATSOptionFlagsDefault, &fontContainer));
-    }
+    assert(CTFontManagerRegisterFontsForURLs((CFArrayRef)[[NSBundle mainBundle] URLsForResourcesWithExtension: @"ttf" subdirectory: nil], kCTFontManagerScopeProcess, NULL));
     [pool release];
 
     return NSApplicationMain(argc, (const char **) argv);
