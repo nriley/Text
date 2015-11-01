@@ -1,0 +1,10 @@
+build
+xcbaselines
+xcuserdata
+.DS_Store
+*.pbxuser
+*.xccheckout
+*.xcscmblueprint
+*~
+\#*
+.\#*
